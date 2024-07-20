@@ -1,5 +1,7 @@
 const PostModel = require('../../models/Post');
 
+console.log('Loading postResolver');
+
 const postResolvers = {
   Query: {
     post: async (_, { id }) => {

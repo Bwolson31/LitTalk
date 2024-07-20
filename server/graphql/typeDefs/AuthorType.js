@@ -1,4 +1,7 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
+
+console.log('Loading AuthorType');
+
 
 const AuthorType = gql`
 type Author {

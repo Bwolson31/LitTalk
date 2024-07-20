@@ -1,40 +1,27 @@
+// server/server.js
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express'); // Correct package
-const path = require('path');
-const { authMiddleware } = require('./auth/auth');
-const { typeDefs, resolvers } = require('./schemas');
-const db = require('./config/connection');
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
+const connectDB = require('./config/connection.js');
 
-require('dotenv').config();
+async function startApolloServer(typeDefs, resolvers) {
+  console.log('Starting Apollo Server');
+  const app = express();
+  connectDB(); 
 
-const PORT = process.env.PORT || 3003;
-const app = express();
+  console.log('TypeDefs:', typeDefs);
+  console.log('Resolvers:', resolvers);
 
-async function startApolloServer() {
-    const server = new ApolloServer({
-        typeDefs,
-        resolvers,
-        context: ({ req }) => authMiddleware({ req }), // Apply authMiddleware here if needed
-    });
+  const server = new ApolloServer({ typeDefs, resolvers });
 
-    await server.start();
-    server.applyMiddleware({ app });
+  await server.start();
+  server.applyMiddleware({ app });
 
-    app.use(express.urlencoded({ extended: false }));
-    app.use(express.json());
-
-    if (process.env.NODE_ENV === 'production') {
-        app.use(express.static(path.join(__dirname, '../client/dist')));
-        app.get('*', (_, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')));
-    }
-
-    db.once('open', () => {
-        app.listen(PORT, () => {
-            console.log(`API server running on port ${PORT}!`);
-            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-        });
-    });
+  app.listen({ port: 4000 }, () =>
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+  );
 }
 
-startApolloServer();
+startApolloServer(typeDefs, resolvers);
 

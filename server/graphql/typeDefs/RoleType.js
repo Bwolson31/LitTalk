@@ -1,4 +1,6 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
+
+console.log('Loading RoleType');
 
 const RoleType = gql`
 enum Role {

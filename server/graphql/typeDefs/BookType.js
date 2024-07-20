@@ -1,5 +1,6 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
+console.log('Loading BookType');
 const BookType = gql`
 type Book {
     id: ID!

@@ -1,5 +1,6 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
+console.log('Loading CommentType');
 const CommentType = gql`
 type Comment {
   id: ID!

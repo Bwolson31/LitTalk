@@ -1,5 +1,7 @@
 const UserModel = require('../../models/User'); 
 
+console.log('Loading userResolver');
+
 const userResolvers = {
   Query: {
     user: async (_, { id }) => {

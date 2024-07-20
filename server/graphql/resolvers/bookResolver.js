@@ -1,5 +1,7 @@
 const BookModel = require('../../models/Book'); 
 
+console.log('Loading bookResolvers');
+
 const bookResolvers = {
   Query: {
     // Fetch a single book by ID

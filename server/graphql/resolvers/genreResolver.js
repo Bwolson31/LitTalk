@@ -1,4 +1,6 @@
-const GenreModel = require('../../models/Genre'); // Ensure this path matches your setup
+const GenreModel = require('../../models/Genre');
+
+console.log('Loading genreResolver');
 
 const genreResolvers = {
   Query: {

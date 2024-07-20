@@ -1,22 +1,11 @@
+const { loadFilesSync } = require('@graphql-tools/load-files');
 const { mergeResolvers } = require('@graphql-tools/merge');
-const userResolvers = require('./userResolver');
-const forumResolvers = require('./forumResolver');
-const postResolvers = require('./postResolver');
-const commentResolvers = require('./commentResolver');
-const genreResolvers = require('./genreResolver');
-const bookResolvers = require('./bookResolver');
-const authorResolvers = require('./authorResolver');
-const forumRequestResolvers = require(',/forumRequestResolver');
+const path = require('path');
 
-const resolvers = mergeResolvers([
-  userResolvers,
-  forumResolvers,
-  postResolvers,
-  commentResolvers,
-  genreResolvers,
-  bookResolvers,
-  authorResolvers,
-  forumRequestResolvers
-]);
+// Load all resolver files from the current directory
+const resolversArray = loadFilesSync(path.join(__dirname), { extensions: ['js'] });
 
-module.exports = resolvers;
+// Merge all resolvers into a single object
+const mergedResolvers = mergeResolvers(resolversArray);
+
+module.exports = mergedResolvers;

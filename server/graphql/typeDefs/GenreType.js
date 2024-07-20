@@ -1,7 +1,8 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
+
+console.log('Loading GenreType');
 
 const GenreType = gql`
-  # Defines a genre with its associated books and authors
   type Genre {
     id: ID!
     name: String!
@@ -9,7 +10,12 @@ const GenreType = gql`
     authors: [Author]
   }
 
-  # Input type for filtering genres in queries
+  type Query {
+    genre(id: ID!): Genre
+    genres: [Genre]
+    genresByFilter(filter: GenreFilter): [Genre]
+  }
+
   input GenreFilter {
     name: String
     associatedBookTitle: String
