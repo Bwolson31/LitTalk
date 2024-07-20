@@ -19,12 +19,7 @@ export default defineConfig({
       }
     }
   },
-  optimizeDeps: {
-    include: ['@stripe/react-stripe-js']
-  },
   build: {
-    rollupOptions: {
-      external: ['@stripe/react-stripe-js']
-    }
+    rollupOptions: {}
   }
 });
