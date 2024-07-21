@@ -128,3 +128,15 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Vite build output
+dist/
+*.js.map
+*.chunk.js
+
+# Apollo Client generated files
+@apollo_client.js
+@apollo_client.js.map
+
+# Miscellaneous
+.DS_Store
