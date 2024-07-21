@@ -3,11 +3,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from './App.jsx';
 import Home from './pages/Home';
-// import Signup from './pages/Signup';
+import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
-// import CheckoutForm from './pages/CheckoutForm';
 // import SearchResultsPage from './components/SearchResultsPage'; 
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
