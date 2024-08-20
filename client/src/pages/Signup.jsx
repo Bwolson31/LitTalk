@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../graphql/mutations';
+import { ADD_USER } from '../graphql/mutations/addUser';
 import Auth from '../auth/auth';
 
 const Signup = () => {
