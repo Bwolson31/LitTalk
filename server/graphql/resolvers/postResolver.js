@@ -1,6 +1,6 @@
 const PostModel = require('../../models/Post');
 
-console.log('Loading postResolver');
+// console.log('Loading postResolver');
 
 const postResolvers = {
   Query: {

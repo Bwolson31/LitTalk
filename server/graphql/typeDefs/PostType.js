@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-console.log('Loading PostType');
+// console.log('Loading PostType');
 
 const PostType = gql`
   type Post {

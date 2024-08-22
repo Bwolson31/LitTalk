@@ -1,6 +1,6 @@
 const AuthorModel = require('../../models/Author');
 
-console.log('Loading authorResolvers');
+// console.log('Loading authorResolvers');
 
 const authorResolvers = {
   Query: {

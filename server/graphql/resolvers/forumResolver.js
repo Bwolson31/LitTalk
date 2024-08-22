@@ -1,6 +1,6 @@
 const ForumModel = require('../../models/Forum');
 
-console.log('Loading ForumResolver');
+// console.log('Loading ForumResolver');
 const forumResolvers = {
   Query: {
     forum: async (_, { id }) => {

@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-console.log('Loading UserType');
+// console.log('Loading UserType');
 
 
 const UserType = gql`
@@ -12,6 +12,7 @@ const UserType = gql`
     forums: [Forum]
     posts: [Post]
     comments: [Comment]
+    token: String
   }
 
   extend type Query {

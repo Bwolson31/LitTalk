@@ -1,7 +1,7 @@
 const ForumRequest = require('../../models/ForumRequest');
 const UserModel = require('../../models/User');
 
-console.log('Loading forumRequestResolver');
+// console.log('Loading forumRequestResolver');
 
 const forumRequestResolvers = {
   Mutation: {

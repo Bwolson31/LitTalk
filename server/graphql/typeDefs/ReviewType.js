@@ -1,6 +1,6 @@
 
 const { gql } = require('apollo-server-express');
-console.log('Loading ReviewType');
+// console.log('Loading ReviewType');
 
 const ReviewType = gql `
 type Review {

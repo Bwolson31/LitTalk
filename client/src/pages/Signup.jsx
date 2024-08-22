@@ -33,20 +33,27 @@ const Signup = () => {
         variables: { ...userFormData },
       });
 
-      Auth.login(data.addUser.token);
-      navigate('/profile'); // Navigate to the profile page after successful signup
+      console.log("Server response data:", data); // Log the response data to debug
+
+      if (data && data.addUser && data.addUser.token) {
+        Auth.login(data.addUser.token);
+        navigate('/profile'); // Navigate to the profile page after successful signup
+      } else {
+        console.error("No token received in the response");
+        setShowAlert(true);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error during signup:", error);
       setShowAlert(true);
     }
-
+  
     setUserFormData({
       username: '',
       email: '',
       password: '',
     });
   };
-
+  
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">

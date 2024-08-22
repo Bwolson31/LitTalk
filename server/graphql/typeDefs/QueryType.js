@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 
-console.log('Loading QueryType');
+// console.log('Loading QueryType');
 
 const QueryType = gql`
 type Query {

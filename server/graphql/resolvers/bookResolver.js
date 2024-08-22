@@ -1,6 +1,6 @@
 const BookModel = require('../../models/Book'); 
 
-console.log('Loading bookResolvers');
+// console.log('Loading bookResolvers');
 
 const bookResolvers = {
   Query: {

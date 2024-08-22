@@ -1,6 +1,6 @@
 const GenreModel = require('../../models/Genre');
 
-console.log('Loading genreResolver');
+// console.log('Loading genreResolver');
 
 const genreResolvers = {
   Query: {

@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-console.log('Loading GenreType');
+// console.log('Loading GenreType');
 
 const GenreType = gql`
   type Genre {

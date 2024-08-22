@@ -17,13 +17,6 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String, 
         required: true, 
-        validate: {
-            validator: function(v) {
-              // Password validation regex
-              return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(v);
-            },
-            message: props => `${props.value} is not a valid password. Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character.`
-          }
         },
         role: {
             type: String, 

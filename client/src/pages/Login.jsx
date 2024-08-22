@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../graphql/mutations/loginUser';
-// import Auth from '../auth/auth'; 
+import Auth from '../auth/auth'; 
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });

@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 const RootMutation = gql`
   type Mutation {
     login(username: String!, password: String!): Auth!
-    addUser(username: String!, email: String!, password: String!, role: Role!): User!
+    addUser(username: String!, email: String!, password: String!, role: String = "USER"): User!
     updatePost(postId: ID!, title: String, content: String): Post!
     deletePost(postId: ID!): Post!
     updateComment(commentId: ID!, content: String!): Comment!

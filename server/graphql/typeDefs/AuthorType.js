@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-console.log('Loading AuthorType');
+// console.log('Loading AuthorType');
 
 
 const AuthorType = gql`

@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-console.log('Loading ForumType');
+// console.log('Loading ForumType');
 
 const ForumType = gql`
   type Forum {

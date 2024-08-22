@@ -1,6 +1,6 @@
 const CommentModel = require('../../models/Comment');
 
-console.log('Loading commentResolver');
+// console.log('Loading commentResolver');
 
 const commentResolvers = {
   Query: {
