@@ -1,0 +1,17 @@
+/* General top positioning */
+.header.top {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  /* Positioning to the left of the inputs */
+  .header.left {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .header.left h1 {
+    margin: 0;
+    font-size: 2rem; /* Adjust font size as needed */
+  }

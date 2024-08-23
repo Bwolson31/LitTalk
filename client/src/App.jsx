@@ -7,11 +7,12 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -38,14 +39,20 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const location = useLocation();
+
+  // Check if the current path is /login or /signup
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+
   return (
     <ApolloProvider client={client}>
-      
       <div className="flex-column justify-flex-start min-100-vh">
-        <Header />
+        {/* Conditionally render the Header */}
+        {!isAuthPage && <Header />}
+        
         <Navbar /> {/* Navbar can now use the context for authentication */}
 
-        <Container className="main-content" >
+        <Container className="main-content">
           <div className="container">
             <Outlet /> {/* Used for rendering child components */}
           </div>
@@ -53,9 +60,10 @@ function App() {
 
         <Footer />
       </div>
-
     </ApolloProvider>
   );
 }
+
+
 
 export default App;

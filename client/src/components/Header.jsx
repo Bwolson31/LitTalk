@@ -1,11 +1,10 @@
 import React from 'react';
+import './Header.css';
 
-function Header() {
-    return (
-        <header>
-        <h1>LitTalk</h1>
-        </header>
-    );
-}
+const Header = () => (
+  <div className="header">
+    <h1>LitTalk</h1>
+  </div>
+);
 
 export default Header;

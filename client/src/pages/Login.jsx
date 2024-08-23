@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../graphql/mutations/loginUser';
-import Auth from '../auth/auth'; 
+import Header from '../components/Header';
+import './Login.css';
 
 const Login = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', password: '' });
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
-  //update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -18,100 +18,72 @@ const Login = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const form = event.currentTarget;
 
-    if (form.checkValidity() === false) {
-      event.preventDefault();
+    if (!event.currentTarget.checkValidity()) {
       event.stopPropagation();
+      setValidated(true);
+      return;
     }
-
-    setValidated(true);
 
     try {
       const { data } = await login({
         variables: { ...userFormData },
       });
 
-      Auth.login(data.login.token);
-      // Redirect or perform any other action upon successful login
-    } catch (error) {
-      console.error(error);
+      if (data && data.login && data.login.token) {
+        Auth.login(data.login.token);
+        window.location.assign('/profile');
+      } else {
+        setShowAlert(true);
+      }
+    } catch (err) {
+      console.error("Error during login:", err);
       setShowAlert(true);
     }
-
-    setUserFormData({
-      email: '',
-      password: '',
-    });
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-center">
-        <Col md={6}>
-          <Card className="p-4">
-            <Card.Title className="text-center mb-4 fs-2">Login</Card.Title>
-            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-              <Alert
-                dismissible
-                onClose={() => setShowAlert(false)}
-                show={showAlert}
-                variant="warning"
-                className="fs-5"
-              >
-                Something went wrong with your login!
-              </Alert>
-
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="email" className="fs-4">
-                  Email
-                </Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Your email"
-                  name="email"
-                  onChange={handleInputChange}
-                  value={userFormData.email}
-                  required
-                  className="fs-5"
-                />
-                <Form.Control.Feedback type="invalid">
-                  An email is required!
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="password" className="fs-4">
-                  Password
-                </Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Your password"
-                  name="password"
-                  onChange={handleInputChange}
-                  value={userFormData.password}
-                  required
-                  className="fs-5"
-                />
-                <Form.Control.Feedback type="invalid">
-                  A password is required!
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Button
-                disabled={!(userFormData.email && userFormData.password)}
-                type="submit"
-                variant="success" // Changed variant to 'success'
-                className="w-100 fs-4"
-              >
-                Submit
-              </Button>
-            </Form>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <div className="auth-container">
+      <div className="header-container">
+        <Header /> {/* LitTalk header positioned to the left */}
+      </div>
+      <div className="login-form-container">
+        <h2 className="modal-title mb-4 text-center">Login</h2> {/* Login title */}
+        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='warning'>
+            Something went wrong with your login!
+          </Alert>
+          <Form.Group className="mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your username"
+              name="username"
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter your password"
+              name="password"
+              onChange={handleInputChange}
+              value={userFormData.password}
+              required
+            />
+          </Form.Group>
+          <Button type="submit" variant="primary" className="w-100">
+            Login
+          </Button>
+        </Form>
+      </div>
+    </div>
   );
 };
 
 export default Login;
+
+

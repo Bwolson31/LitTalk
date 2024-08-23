@@ -1,10 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const UserModel = require('../../models/User'); 
-
-
-// console.log('Loading userResolver');
+const UserModel = require('../../models/User');
 
 function validatePassword(password) {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -35,25 +32,22 @@ const userResolvers = {
     }
   },
   Mutation: {
-    login: async (_, { email, password }) => {
-      const user = await UserModel.findOne({ email });
+    login: async (_, { username, password }) => {
+      const user = await UserModel.findOne({ username });
       if (!user || !bcrypt.compareSync(password, user.password)) {
-        throw new Error('Invalid credentials');
+        throw new Error('No user found with this username or password');
       }
 
-      // Generate JWT token
-      const token = jwt.sign(
-        { id: user._id, role: user.role },
-        process.env.JWT_SECRET,
-        { expiresIn: '1h' }
-      );
-      console.log('Generated token:', token); 
+      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
       return {
         token,
-        user,
+        user: {
+          id: user._id,
+          username: user.username,
+        },
       };
     },
-
     addUser: async (_, { username, email, password, role = 'USER' }) => {
       try {
         const userData = { username, email, password, role };
@@ -84,4 +78,3 @@ const userResolvers = {
 };
 
 module.exports = userResolvers;
-

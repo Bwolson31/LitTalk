@@ -1,0 +1,95 @@
+/* General body styling */
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+/* Flexbox container for header and form */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Header styling */
+.header-container {
+    flex-shrink: 0;
+    text-align: center;
+    margin-right: 20px; /* Space between header and form */
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 0;
+}
+
+
+.login-form-container {
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Modal title */
+.modal-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+/* Form control styling */
+.form-control {
+    border: 2px solid #0056b3;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-label {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #004080;
+    border-color: #004080;
+}
+
+/* Alert styling */
+.alert-warning {
+    background-color: #ffefcc;
+    color: #856404;
+    border-radius: 5px;
+    font-size: 18px; 
+    font-weight: 600; 
+    padding: 15px 20px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    border: 1px solid #856404; 
+}
